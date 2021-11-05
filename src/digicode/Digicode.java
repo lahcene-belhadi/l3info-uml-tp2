@@ -9,11 +9,14 @@ public class Digicode {
 
     private int[] code = {-1, -1, -1, -1};
     private State state;
+    private Interface ui;
 
     public Digicode() {
 
         // Init the state of the system to OFF
         this.state = State.OFF;
+        
+        this.ui = new Interface();
 
     }
 
@@ -23,6 +26,8 @@ public class Digicode {
     public void start() {
 
         this.state = State.ON;
+
+        // Turns ON the red LED
 
     }
 
