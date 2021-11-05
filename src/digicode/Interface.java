@@ -10,12 +10,15 @@ public class Interface {
 
     private LED redLED;
     private LED greenLED;
+    private Keyboard keyboard;
 
     public Interface() {
 
         // Instanciate the LEDs
         this.redLED = new LED(Color.RED);
         this.greenLED = new LED(Color.GREEN);
+        
+        this.keyboard = new Keyboard();
 
         // The red LED is ON at the beginning of the process
         this.turnOnRedLED();

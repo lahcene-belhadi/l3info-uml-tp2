@@ -11,19 +11,8 @@ public class Main {
 
         Digicode digicode = new Digicode();
 
-        System.out.println(digicode.getState());
-
+        // Start the system
         digicode.start();
-
-        System.out.println(digicode.getState());
-
-        digicode.reboot();
-
-        System.out.println(digicode.getState());
-
-        digicode.stop();
-
-        System.out.println(digicode.getState());
     
     }
 
