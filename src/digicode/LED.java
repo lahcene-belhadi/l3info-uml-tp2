@@ -18,4 +18,28 @@ public class LED {
 
     }
 
+    /**
+     * Turns ON or OFF the light depending on its current state
+     */
+    public void switchState() {
+
+        if (this.getState() == State.OFF)
+            this.state = state.ON;
+        
+        else 
+            this.state = state.OFF;
+
+    }
+
+    /**
+     * Tells the LED's state
+     * 
+     * @return The LED state
+     */
+    public State getState() {
+
+        return this.state;
+
+    }
+
 }
