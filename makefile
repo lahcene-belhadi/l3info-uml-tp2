@@ -7,7 +7,7 @@ PKG_DIGICODE=src/digicode/
 PKG_UTILS=src/utils/
 PKG_ENUMS=src/utils/enums/
 
-all: pkgutils pkgdigicode pkgmain
+all: pkgenums pkgdigicode pkgmain
 	@echo "Build done !"
 
 pkgmain: $(PKG_MAIN)*.java
@@ -17,11 +17,6 @@ pkgmain: $(PKG_MAIN)*.java
 pkgdigicode: $(PKG_DIGICODE)*.java
 	@echo "Building digicode package ..."
 	javac -cp $(CLASS_PATH) -d $(CLASS_PATH) $(PKG_DIGICODE)*.java
-
-pkgutils: $(PKG_UTILS)*.java
-	@echo "Building utils package ..."
-	javac -cp $(CLASS_PATH) -d $(CLASS_PATH) $(PKG_UTILS)*.java
-	pkgenums
 
 pkgenums: $(PKG_ENUMS)*.java
 	@echo "Building enums package ..."
