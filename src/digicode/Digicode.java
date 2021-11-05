@@ -1,6 +1,9 @@
 
 package digicode;
 
+// package
+import utils.enums.State;
+
 
 public class Digicode {
 
