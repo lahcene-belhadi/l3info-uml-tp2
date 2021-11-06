@@ -72,6 +72,7 @@ public class Digicode {
         }
         
         System.out.printf("You've entered: %d digits\n", this.received);
+        this.displayCode();
 
     }
 
@@ -144,6 +145,14 @@ public class Digicode {
     public int getReceived() {
 
         return this.received;
+
+    }
+
+    // TEST
+    public void displayCode() {
+
+        for (int digit: this.code)
+            System.out.print(digit + " ");
 
     }
     
