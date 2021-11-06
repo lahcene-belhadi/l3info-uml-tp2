@@ -16,6 +16,7 @@ public abstract class Delayed {
     public void timeout() {
 
         this.timedOut = true;
+        System.out.println("TIMEOUT !");
 
     }
 
@@ -27,7 +28,7 @@ public abstract class Delayed {
 
         try {
 
-            Thread.sleep(this.timeout);
+            Thread.sleep(this.timeout * 1000);
 
         } catch (Exception threadException) {
          
@@ -36,6 +37,17 @@ public abstract class Delayed {
         }
 
         this.timeout();
+
+    }
+
+    /**
+     * Tells if the current object is timed out
+     * 
+     * @return The timeout state of the current object
+     */
+    public boolean isTimedout() {
+
+        return this.timedOut;
 
     }
     
