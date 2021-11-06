@@ -5,6 +5,9 @@ package digicode;
 import utils.enums.Color;
 import utils.enums.State;
 
+// lib
+import java.util.Scanner;
+
 
 public class Interface {
 
@@ -105,6 +108,47 @@ public class Interface {
     public Keyboard getKeyboard() {
 
         return this.keyboard;
+
+    }
+
+    /**
+     * Allows the user to interact with the door
+     * 
+     * @param door - The door to interact with
+     */
+    public void doorInteraction(Door door) {
+
+        Scanner scan = new Scanner(System.in);
+
+        // Door opening procedure
+        System.out.print("Press 1 to open the door: ");
+
+        int input = scan.nextInt();
+
+        while (input != 1) {
+
+            System.out.print("Press 1 to open the door: ");
+
+            input = scan.nextInt();
+
+        }
+
+        door.open();
+
+        // Door closing procedure
+        System.out.print("Press 0 to close the door: ");;
+
+        input = scan.nextInt();
+
+        while (input != 0) {
+
+            System.out.print("Press 0 to close the door: ");;
+
+            input = scan.nextInt();
+
+        }
+
+        door.close();
 
     }
     

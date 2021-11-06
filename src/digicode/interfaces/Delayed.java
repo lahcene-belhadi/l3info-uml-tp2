@@ -16,7 +16,6 @@ public abstract class Delayed {
     public void timeout() {
 
         this.timedOut = true;
-        System.out.println("TIMEOUT !");
 
     }
 

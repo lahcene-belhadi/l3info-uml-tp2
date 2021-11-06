@@ -18,8 +18,9 @@ public class Digicode {
     private State state;
     private Interface ui;
     private Keyboard keyboard;
+    private Door door;
 
-    public Digicode() {
+    public Digicode(Door door) {
 
         this.received = 0;
 
@@ -29,6 +30,8 @@ public class Digicode {
         this.ui = new Interface();
 
         this.keyboard = this.ui.getKeyboard();
+
+        this.door = door;
 
     }
 
@@ -70,9 +73,70 @@ public class Digicode {
             Future.waitForCompletionTimeout(kb, this.keyboard);
 
         }
+
+        // Archive the attempt
+        Archive archive = new Archive();
+        archive.archive(this.code);
         
-        System.out.printf("You've entered: %d digits\n", this.received);
-        this.displayCode();
+        // If the user entered 4 digits
+        if (this.received == 4) {
+
+            this.ui.turnOffRedLED();
+
+            // Check if the code is valid
+            boolean valid = Database.checkCode(this.code);
+
+            if (valid) 
+                this.door.unlock();
+
+            // Prepare the door's countdown
+            Runnable doorCountdown = () -> { this.door.startCountdown(); };
+
+            // Prepare the user's interaction with the door
+            Runnable userInteraction = () -> { 
+
+                this.ui.doorInteraction(this.door); 
+
+            };
+
+            // Start the door's countdown
+            CompletableFuture<Void> doorCd = CompletableFuture.runAsync(
+                doorCountdown
+            );
+
+            // Start the user's interaction with the door
+            CompletableFuture<Void> doorInteract = CompletableFuture.runAsync(
+                userInteraction
+            );
+
+            Future.waitForCompletionTimeout(doorInteract, this.door);
+            
+            // The user can open or close the door as many as he wants while
+            // the timer is still running
+            while (!doorCd.isDone()) {
+                
+                doorInteract = CompletableFuture.runAsync(userInteraction);
+
+                Future.waitForCompletionTimeout(doorInteract, this.door);
+
+            }
+
+            doorInteract.cancel(true);
+
+            // Lock the door at the end of the door timer
+            this.door.lock();
+        
+            this.ui.turnOffGreenLED();
+            this.ui.turnOnRedLED();
+
+
+        } else {
+
+            System.out.println("Not enough digits.");
+            this.ui.turnOffGreenLED();
+            this.ui.turnOnRedLED();
+
+        }
 
     }
 
@@ -145,6 +209,17 @@ public class Digicode {
     public int getReceived() {
 
         return this.received;
+
+    }
+
+    /**
+     * Sets the digicode's door
+     * 
+     * @param door - The door reference
+     */
+    public void setDoor(Door door) {
+
+        this.door = door;
 
     }
 

@@ -18,7 +18,7 @@ public class Database {
             if (code[i] != validCode[i])
                 return false;
 
-        return true;
+        return true; 
 
     }
 

@@ -1,12 +1,11 @@
 
 package digicode;
 
-import java.util.Scanner;
-
 // package
 import digicode.interfaces.Delayed;
 
 // lib
+import java.util.Scanner;
 import java.lang.System;
 
 

@@ -24,6 +24,7 @@ public class Door extends Delayed {
     public void open() {
 
         this.open = true;
+        System.out.println("\nThe door is open.\n");
 
     }
 
@@ -33,6 +34,7 @@ public class Door extends Delayed {
     public void close() {
 
         this.open = false;
+        System.out.println("\nThe door is closed.\n");
         
     }
 
@@ -42,6 +44,7 @@ public class Door extends Delayed {
     public void unlock() {
 
         this.locked = false;
+        System.out.println("\nThe door is unlocked.\n");
 
     }
 
@@ -49,8 +52,17 @@ public class Door extends Delayed {
      * Locks the door
      */
     public void lock() {
+
+        // If the door is open after being timed out: ring the alarm
+        if (this.isOpen()) 
+            Alarm.ring();
         
-        this.locked = true;
+        else {
+
+            this.locked = true;
+            System.out.println("\nThe door is locked.\n");
+            
+        }
 
     }
 
