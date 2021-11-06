@@ -5,6 +5,7 @@ package digicode;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Instant;
 
 
 public class Archive {
@@ -17,14 +18,16 @@ public class Archive {
     public void archive(int[] attempt) {
 
         this.createArchiveFile();
+        Instant date = Instant.now();
 
         try {
 
             // Get the archive file
-            FileWriter archive = new FileWriter("archive.txt");
+            FileWriter archive = new FileWriter("archive.txt", true);
 
             // Prepare the line to write in the file
             String strAttempt = new String();
+            strAttempt += date + ": ";
 
             // Add all the digit to the line
             for (int digit: attempt) 
@@ -32,9 +35,7 @@ public class Archive {
                     strAttempt += digit;
 
             // Write the line into the file
-            strAttempt += '\n';
-
-            archive.write(strAttempt);
+            archive.write(strAttempt + '\n');
 
             archive.close();
 
