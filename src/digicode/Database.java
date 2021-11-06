@@ -14,7 +14,11 @@ public class Database {
 
         int[] validCode = {1,2,3,4};
 
-        return code == validCode;
+        for (int i=0; i < 4; i++)
+            if (code[i] != validCode[i])
+                return false;
+
+        return true;
 
     }
 
