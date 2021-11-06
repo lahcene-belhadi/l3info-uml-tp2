@@ -12,6 +12,7 @@ public class Door extends Delayed {
 
     public Door() {
 
+        this.timeout = 20;
         this.open = false;
         this.locked = true;
 
