@@ -18,7 +18,7 @@ public class Interface {
         this.redLED = new LED(Color.RED);
         this.greenLED = new LED(Color.GREEN);
         
-        this.keyboard = new Keyboard();
+        this.keyboard = new Keyboard(5);
 
         // The red LED is ON at the beginning of the process
         this.turnOnRedLED();
@@ -94,6 +94,17 @@ public class Interface {
         }
 
         return false;
+
+    }
+
+    /**
+     * Returns the interface's keyboard
+     * 
+     * @return The interface's keyboard
+     */
+    public Keyboard getKeyboard() {
+
+        return this.keyboard;
 
     }
     
