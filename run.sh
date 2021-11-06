@@ -1,5 +1,4 @@
+#!/bin/bash
 make all
-echo ""
-echo "Running ..."
-echo ""
+echo -e "\nRunning ...\n"
 java -cp src/bin/ src/main/Main.java
